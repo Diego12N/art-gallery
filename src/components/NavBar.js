@@ -1,3 +1,5 @@
+import CartWidget from "./CartWidget";
+
 const NavBar = () => {
 	return (
 		<div className="header_container">
@@ -22,9 +24,7 @@ const NavBar = () => {
 						</a>
 					</li>
 				</ul>
-				<a href="" className="navbar-cart">
-					<i className="fas fa-shopping-cart"></i>
-				</a>
+				<CartWidget></CartWidget>
 			</header>
 		</div>
 	);

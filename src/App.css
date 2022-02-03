@@ -10,6 +10,7 @@ body {
 
 #root {
 	width: 100%;
+	text-align: center;
 }
 
 .header_container {
@@ -51,4 +52,27 @@ body {
 
 .navbar_link {
 	text-decoration: none;
+}
+
+.navbar-cart {
+	display: flex;
+	align-items: flex-end;
+	text-decoration: none;
+}
+
+.navbar-cart__amount {
+	text-align: center;
+	background-color: brown;
+	color: #fff;
+	font-size: 10px;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+}
+
+.page-title {
+	font-size: 20px;
+	font-weight: 800;
+	text-transform: uppercase;
+	margin: 20px 0;
 }

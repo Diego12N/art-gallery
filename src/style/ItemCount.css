@@ -1,0 +1,21 @@
+.item-count {
+	width: 50%;
+	margin: auto;
+}
+
+.item-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.btn-add,
+.btn-subtract {
+	width: 35px;
+	height: 35px;
+	border: 0;
+	border-radius: 50%;
+	font-size: 20px;
+	cursor: pointer;
+}

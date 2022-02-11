@@ -1,0 +1,18 @@
+[
+	{
+		"id": 1,
+		"title": "El Paso",
+		"description": "Técnica mixta s/ Cartón",
+		"year": "2022",
+		"img": "../assets/img/01.jpg",
+		"price": "1500"
+	},
+	{
+		"id": 2,
+		"title": "Sumergirse en lo profundo",
+		"description": "Pintura s/ cartel mdf",
+		"year": "2022",
+		"img": "../assets/img/02.jpg",
+		"price": "2300"
+	}
+]

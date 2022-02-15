@@ -2,6 +2,9 @@ import ItemCount from "./ItemCount";
 import "../style/item.css";
 
 const Item = (props) => {
+	const onAdd = (unit) =>
+		alert("Se han agregado " + unit + " unidades al carrito");
+
 	return (
 		<>
 			<div className="gallery-container">
@@ -14,7 +17,7 @@ const Item = (props) => {
 					<p className="gallery-year">Año: {props.year}</p>
 					<p className="gallery-price">Precio: ${props.price}</p>
 				</div>
-				<ItemCount key={props.id} stock="5" initial="1" />
+				<ItemCount stock="5" initial="1" onAdd={onAdd} />
 			</div>
 		</>
 	);

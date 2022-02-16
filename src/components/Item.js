@@ -1,4 +1,5 @@
 import ItemCount from "./ItemCount";
+import ItemDetailContainer from "./ItemDetailContainer";
 import "../style/item.css";
 
 const Item = (props) => {
@@ -7,7 +8,7 @@ const Item = (props) => {
 
 	return (
 		<>
-			<div className="gallery-container">
+			<div>
 				<img src={props.img} className="gallery-img"></img>
 				<div className="gallery-title">
 					<h3 className="gallery-title__item">{props.title}</h3>

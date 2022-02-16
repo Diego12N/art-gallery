@@ -8,16 +8,15 @@ const ItemList = (props) => {
 				{props.products.length > 0
 					? props.products.map((elem) => {
 							return (
-								<>
+								<div key={elem.id} className="gallery-container">
 									<Item
-										key={elem.id}
 										img={elem.img}
 										title={elem.title}
 										description={elem.description}
 										year={elem.year}
 										price={elem.price}
 									></Item>
-								</>
+								</div>
 							);
 					  })
 					: console.log(props.products)}

@@ -9,17 +9,11 @@ const ItemList = (props) => {
 					? props.products.map((elem) => {
 							return (
 								<div key={elem.id} className="gallery-container">
-									<Item
-										img={elem.img}
-										title={elem.title}
-										description={elem.description}
-										year={elem.year}
-										price={elem.price}
-									></Item>
+									<Item id={elem.id} img={elem.img} title={elem.title}></Item>
 								</div>
 							);
 					  })
-					: console.log(props.products)}
+					: console.log(props.products + "No funciona")}
 			</div>
 		</>
 	);

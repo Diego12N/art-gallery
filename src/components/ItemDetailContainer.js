@@ -1,14 +1,12 @@
 import {useEffect, useState} from "react";
-import ItemList from "./ItemList";
-import "../style/itemListContainer.css";
 import {useParams} from "react-router-dom";
+import ItemDetail from "./ItemDetail";
 
-const ItemListContainer = () => {
-	const [items, setItems] = useState([]);
+const ItemDetailContainer = () => {
+	const [item, setItem] = useState([]);
 	let is_ok = true;
 
-	// const categoryId = useParams(); Esta variable devuelve un objeto, pero necesitamos su valor/key
-	const {categoryId} = useParams(); // Mediante los signos {} destructuramos la variable para recibir solo su valor
+	const {id} = useParams();
 
 	const products = [
 		{
@@ -108,14 +106,10 @@ const ItemListContainer = () => {
 	function getItem() {
 		customFetch(
 			1000,
-			products.filter((item) => {
-				if (categoryId != undefined)
-					return item.categoryID === parseInt(categoryId);
-				else return item;
-			})
+			products.find((item) => item.id === parseInt(id))
 		)
 			.then((res) => {
-				setItems(res);
+				setItem(res);
 			})
 			.catch((err) => {
 				return console.log("Hubo un problema con la peticion" + err);
@@ -124,15 +118,15 @@ const ItemListContainer = () => {
 
 	useEffect(() => {
 		getItem();
-	}, [items]);
+	}, [id]);
 
 	return (
 		<>
-			<div className="itemList-container">
-				<ItemList products={items}></ItemList>
+			<div className="item-detail__container">
+				<ItemDetail product={item}></ItemDetail>
 			</div>
 		</>
 	);
 };
 
-export default ItemListContainer;
+export default ItemDetailContainer;

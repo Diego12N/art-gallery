@@ -1,27 +1,38 @@
+import {Link} from "react-router-dom";
 import CartWidget from "./CartWidget";
 
 const NavBar = () => {
 	return (
 		<div className="header_container">
 			<header className="navbar">
-				<a href="" className="navbar-logotipe">
+				<Link to="/" className="navbar-logotipe">
 					Mar Ponssa Art
-				</a>
+				</Link>
 				<ul className="navbar_container">
 					<li className="navbar_item">
-						<a href="" className="navbar_link">
+						<Link to="/" className="navbar_link">
 							Home
-						</a>
+						</Link>
 					</li>
 					<li className="navbar_item">
-						<a href="" className="navbar_link">
+						<Link to="" className="navbar_link">
 							Biografia
-						</a>
+						</Link>
 					</li>
 					<li className="navbar_item">
-						<a href="" className="navbar_link">
-							Obras disponibles
-						</a>
+						<Link to="/category/1" className="navbar_link">
+							Sobre Carton
+						</Link>
+					</li>
+					<li className="navbar_item">
+						<Link to="/category/2" className="navbar_link">
+							Sobre Lienzo
+						</Link>
+					</li>
+					<li className="navbar_item">
+						<Link to="/category/3" className="navbar_link">
+							Sobre Durlok
+						</Link>
 					</li>
 				</ul>
 				<CartWidget valor="4"></CartWidget>

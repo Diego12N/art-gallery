@@ -1,5 +1,5 @@
 import Item from "./Item";
-import "../style/item.css";
+import "../style/gallery.css";
 
 const ItemList = (props) => {
 	return (

@@ -2,7 +2,20 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	width: 80%;
 	gap: 2%;
+}
+
+.gallery-container {
+	width: 20%;
+	margin-bottom: 2%;
+	border: 1px solid #000;
+	cursor: pointer;
+}
+
+.gallery-link {
+	text-decoration: none;
+	color: #000;
 }
 
 .gallery-img {
@@ -12,13 +25,6 @@
 .gallery-title {
 	width: 100%;
 	font-size: 14px;
-}
-
-.gallery-container {
-	width: 20%;
-	margin-bottom: 2%;
-	border: 1px solid #000;
-	cursor: pointer;
 }
 
 .gallery-container:hover {

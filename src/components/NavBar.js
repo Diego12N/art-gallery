@@ -1,12 +1,16 @@
 import {Link} from "react-router-dom";
 import CartWidget from "./CartWidget";
+import "../style/header.css";
 
 const NavBar = () => {
 	return (
 		<div className="header_container">
 			<header className="navbar">
 				<Link to="/" className="navbar-logotipe">
-					Mar Ponssa Art
+					<img
+						src="./images/Mar-logotipe.jpg"
+						className="navbar-logotipe__img"
+					></img>
 				</Link>
 				<ul className="navbar_container">
 					<li className="navbar_item">

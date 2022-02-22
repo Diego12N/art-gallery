@@ -1,9 +1,17 @@
+import {useState} from "react";
+import {Link} from "react-router-dom";
 import ItemCount from "./ItemCount";
 import "../style/gallery.css";
 
 const ItemDetail = (props) => {
+	const [itemAdd, setItemAdd] = useState(0);
 	const onAdd = (unit) => {
-		alert("Se han agregado " + unit + " unidades al carrito");
+		let quantityToAdd = 0;
+		quantityToAdd += unit;
+
+		if (0 < quantityToAdd) {
+			setItemAdd(quantityToAdd);
+		}
 	};
 	return (
 		<>
@@ -18,7 +26,13 @@ const ItemDetail = (props) => {
 						<p className="gallery-year">Año: {props.product.year}</p>
 						<p className="gallery-price">Precio: ${props.product.price}</p>
 					</div>
-					<ItemCount stock="5" initial="1" onAdd={onAdd} />
+					{itemAdd === 0 ? (
+						<ItemCount stock="5" initial="0" onAdd={onAdd} />
+					) : (
+						<Link to="/cart">
+							<button>Ir al Carrito</button>
+						</Link>
+					)}
 				</div>
 			</div>
 		</>

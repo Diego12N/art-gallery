@@ -124,7 +124,7 @@ const ItemListContainer = () => {
 
 	useEffect(() => {
 		getItem();
-	}, [items]);
+	}, [categoryId]);
 
 	return (
 		<>

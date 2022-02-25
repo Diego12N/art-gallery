@@ -1,14 +1,14 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {CartContextProvider} from "./components/CartContext";
+import CartContextProvider from "./components/CartContext";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
-import "./App.css";
 import Cart from "./components/Cart";
+import "./App.css";
 
 function App() {
 	return (
-		<CartContextProvider value={[1, 2, 3]}>
+		<CartContextProvider>
 			<BrowserRouter>
 				<NavBar />
 				<Routes>

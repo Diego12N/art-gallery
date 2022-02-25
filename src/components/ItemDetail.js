@@ -1,18 +1,24 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import ItemCount from "./ItemCount";
 import "../style/gallery.css";
+import {CartContext} from "./CartContext";
 
 const ItemDetail = (props) => {
-	const [itemAdd, setItemAdd] = useState(0);
+	const [qty, setQty] = useState(0);
+	const test = useContext(CartContext);
+
+	useEffect(() => {
+		if (props.product && qty > 0) test.addItem(props.product, qty);
+	}, [qty]);
+
 	const onAdd = (unit) => {
 		let quantityToAdd = 0;
 		quantityToAdd += unit;
 
-		if (0 < quantityToAdd) {
-			setItemAdd(quantityToAdd);
-		}
+		setQty(quantityToAdd);
 	};
+
 	return (
 		<>
 			<div className="gallery-detail">
@@ -26,7 +32,7 @@ const ItemDetail = (props) => {
 						<p className="gallery-year">Año: {props.product.year}</p>
 						<p className="gallery-price">Precio: ${props.product.price}</p>
 					</div>
-					{itemAdd === 0 ? (
+					{qty === 0 ? (
 						<ItemCount stock="5" initial="0" onAdd={onAdd} />
 					) : (
 						<Link to="/cart">

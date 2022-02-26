@@ -7,21 +7,35 @@ const CartContextProvider = ({children}) => {
 
 	//Esta funcion global se ejecuta en el ItemCount
 
-	const isInCart = (id, qty) => {};
+	const isInCart = (item, qty, price) => {
+		let elementIndex = cartList.findIndex((obj) => {
+			return obj.id === item.id;
+		});
+
+		if (cartList.length > 0 && elementIndex != -1) {
+			cartList[elementIndex].qty += qty;
+			cartList[elementIndex].price += price;
+		} else return;
+	};
 
 	const addItem = (item, unit) => {
 		let total = item.price * unit;
+		let objExist = cartList.some((obj) => obj.id === item.id);
 
-		setCartList([
-			...cartList,
-			{
-				id: item.id,
-				img: item.img,
-				name: item.title,
-				price: total,
-				qty: unit,
-			},
-		]);
+		if (objExist) {
+			isInCart(item, unit, total);
+		} else {
+			setCartList([
+				...cartList,
+				{
+					id: item.id,
+					img: item.img,
+					name: item.title,
+					price: total,
+					qty: unit,
+				},
+			]);
+		}
 	};
 
 	const removeItem = (item) => {
@@ -44,24 +58,3 @@ const CartContextProvider = ({children}) => {
 };
 
 export default CartContextProvider;
-
-/* let itemListVerification = cartList.some((elem) => {
-	return elem.id === item.id;
-});
-
-if (!itemListVerification) {
-	setCartList([
-		...cartList,
-		{
-			id: item.id,
-			img: item.img,
-			name: item.title,
-			price: item.price,
-			qty: unit,
-		},
-	]);
-} else {
-	cartList.map((elem) => {
-
-	});
-}  */

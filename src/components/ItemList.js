@@ -8,8 +8,17 @@ const ItemList = (props) => {
 				{props.products.length > 0
 					? props.products.map((elem) => {
 							return (
-								<div key={elem.id} className="gallery-container">
-									<Item id={elem.id} img={elem.img} title={elem.title}></Item>
+								<div
+									key={elem.id}
+									id={"gallery-" + elem.id}
+									className="gallery-container"
+								>
+									<Item
+										id={elem.id}
+										img={elem.img}
+										title={elem.title}
+										price={elem.price}
+									></Item>
 								</div>
 							);
 					  })

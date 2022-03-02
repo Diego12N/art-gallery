@@ -5,7 +5,24 @@ export const CartContext = createContext();
 const CartContextProvider = ({children}) => {
 	const [cartList, setCartList] = useState([]);
 
-	//Esta funcion global se ejecuta en el ItemCount
+	const calcSubTotal = () => {
+		let subTotal = cartList.map((item) => item.price);
+		return subTotal.reduce(
+			(previousValue, currentValue) => previousValue + currentValue
+		);
+	};
+
+	const calcTotal = () => {
+		return calcSubTotal();
+	};
+
+	const calcItemsQty = () => {
+		let quantities = cartList.map((item) => item.qty);
+		return quantities.reduce(
+			(previousValue, currentValue) => previousValue + currentValue,
+			0
+		);
+	};
 
 	const isInCart = (item, qty, price) => {
 		let elementIndex = cartList.findIndex((obj) => {
@@ -51,7 +68,17 @@ const CartContextProvider = ({children}) => {
 	};
 
 	return (
-		<CartContext.Provider value={{cartList, addItem, removeItem, clear}}>
+		<CartContext.Provider
+			value={{
+				cartList,
+				addItem,
+				removeItem,
+				clear,
+				calcItemsQty,
+				calcSubTotal,
+				calcTotal,
+			}}
+		>
 			{children}
 		</CartContext.Provider>
 	);

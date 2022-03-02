@@ -7,9 +7,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	max-width: 1328px;
+	width: 60%;
+	/* max-width: 1328px; */
 	height: 95px;
-	min-width: 80vw;
+	/* min-width: 80vw; */
 	margin: auto;
 }
 

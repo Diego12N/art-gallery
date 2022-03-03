@@ -1,9 +1,21 @@
 import {createContext, useState} from "react";
+import {collection, getDocs} from "firebase/firestore";
+import db from "../utils/firebaseConfig";
 
 export const CartContext = createContext();
 
 const CartContextProvider = ({children}) => {
 	const [cartList, setCartList] = useState([]);
+
+	const getFirebaseProducts = async () => {
+		const querySnapshot = await getDocs(collection(db, "products"));
+		const dataFromFirestore = querySnapshot.docs.map((document) => ({
+			id: document.id,
+			...document.data(),
+		}));
+
+		return dataFromFirestore;
+	};
 
 	const calcSubTotal = () => {
 		let subTotal = cartList.map((item) => item.price);
@@ -77,6 +89,7 @@ const CartContextProvider = ({children}) => {
 				calcItemsQty,
 				calcSubTotal,
 				calcTotal,
+				getFirebaseProducts,
 			}}
 		>
 			{children}

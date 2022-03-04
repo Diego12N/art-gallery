@@ -1,8 +1,8 @@
 import {useEffect, useState, useContext} from "react";
-import ItemList from "./ItemList";
-import "../style/itemListContainer.css";
 import {useParams} from "react-router-dom";
 import {CartContext} from "./CartContext";
+import ItemList from "./ItemList";
+import "../style/itemListContainer.css";
 
 const ItemListContainer = () => {
 	const test = useContext(CartContext);
@@ -20,10 +20,10 @@ const ItemListContainer = () => {
 		fireStoreFetch()
 			.then((result) => {
 				if (categoryId != undefined) {
-					return setItems(
+					setItems(
 						result.filter((obj) => obj.categoryID === parseInt(categoryId))
 					);
-				} else return setItems(result);
+				} else setItems(result);
 			})
 			.catch((err) => console.log(err));
 	}, [categoryId]);

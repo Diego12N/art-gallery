@@ -7,6 +7,19 @@ import {Link} from "react-router-dom";
 const Cart = () => {
 	const test = useContext(CartContext);
 
+	const createOrder = () => {
+		let order = {
+			comprador: {
+				email: "",
+				name: "",
+				phone: "",
+			},
+			items: test.cartList,
+		};
+
+		console.log(order);
+	};
+
 	const RemoveCartList = () => {
 		return (
 			<button
@@ -45,7 +58,7 @@ const Cart = () => {
 							<p>Sub Total: {test.calcSubTotal()}</p>
 							<p>Descuento:</p>
 							<b>Total a Pagar {test.calcTotal()}</b>
-							<button></button>
+							<button onClick={createOrder()}> Confirmacion de Pago</button>
 						</div>
 					</>
 				) : (

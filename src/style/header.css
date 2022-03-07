@@ -1,23 +1,52 @@
+.header {
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
 .header_container {
 	width: 100%;
 	background-color: #373737;
 }
 
-.navbar {
+.header-margin__bottom {
+	background-image: url("/public/images/header-margin.jpg");
+	background-size: cover;
+	height: 35px;
+}
+
+.navbar-sections__container {
+	background: #fff;
+	width: 100%;
+	border-top: 2px double #373737;
+	border-bottom: 2px double #373737;
+	font-family: "Manrope", sans-serif;
+	font-weight: 700;
+}
+
+.navbar-container,
+.navbar-sections {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 60%;
-	/* max-width: 1328px; */
 	height: 95px;
-	/* min-width: 80vw; */
 	margin: auto;
+}
+
+.navbar-sections {
+	width: 60%;
+	padding: 0.7rem 0;
+	padding-right: 15px; /* Compensacion visual */
+	justify-content: center;
+	height: 25%;
 }
 
 .navbar-logotipe {
 	display: inline-block;
-	width: 60px;
-	height: 60px;
+	width: 62px;
+	height: 62px;
 	overflow: hidden;
 	border-radius: 50%;
 	border: 1px solid #fff;
@@ -27,18 +56,19 @@
 	width: 100%;
 }
 
-.navbar_container {
+.navbar-list_container {
 	display: flex;
 	list-style: none;
 	height: 25%;
-	padding: 10px;
-	gap: 10px;
 }
 
-.navbar_item {
+.navbar_item,
+.section {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	padding: 0 15px;
+	width: 65px;
 	height: 100%;
 	text-align: center;
 	font-size: 14px;
@@ -69,13 +99,35 @@
 }
 
 .navbar_link {
+	font-size: 14px;
+	letter-spacing: 0.5px;
+}
+
+.section {
+	width: 110px;
+}
+
+.section_link {
+	font-size: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #373737;
+	transition: color 0.4s;
+}
+
+.section_link:hover {
+	color: #fa1303;
+}
+
+.navbar_link {
 	text-decoration: none;
 	color: #fff;
 }
 
 .navbar-cart {
 	display: flex;
-	align-items: flex-end;
+	width: 62px;
+	justify-content: center;
 	text-decoration: none;
 }
 

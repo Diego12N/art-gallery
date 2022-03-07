@@ -7,14 +7,8 @@ import db from "../utils/firebaseConfig";
 
 const ItemDetailContainer = () => {
 	const [item, setItem] = useState([]);
-	/* const test = useContext(CartContext); */
 
 	const {id} = useParams();
-
-	/* 	const fireStoreFetch = () => {
-		let productPromise = test.getFirebaseProducts();
-		return productPromise;
-	}; */
 
 	const fireStoreFetch = async (id) => {
 		const docRef = doc(db, "products", id);
@@ -33,26 +27,31 @@ const ItemDetailContainer = () => {
 	useEffect(() => {
 		fireStoreFetch(id)
 			.then((result) => {
-				console.log(result);
+				/* console.log(result); */
 				setItem(result);
 			})
 			.catch((err) => console.log(err));
 	}, [id]);
 
-	/* 	useEffect(() => {
-		fireStoreFetch(id)
-			.then((result) => {
-				console.log(result);
-				setItem(result.find((document) => document.id === id));
-			})
-			.catch((err) => console.log(err));
-	}, [id]);
- 	*/
 	return (
 		<>
-			<div className="item-detail__container">
-				<ItemDetail product={item}></ItemDetail>
-			</div>
+			{item.length === 0 ? (
+				<>
+					<div className="lds-ring">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<b>Cargando...</b>
+				</>
+			) : (
+				<>
+					<div className="item-detail__container">
+						<ItemDetail product={item}></ItemDetail>
+					</div>
+				</>
+			)}
 		</>
 	);
 };

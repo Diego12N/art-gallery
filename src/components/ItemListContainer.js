@@ -31,6 +31,7 @@ const ItemListContainer = () => {
 	return (
 		<>
 			<div className="itemList-container">
+				<h1>DESTACADOS</h1>
 				<ItemList products={items}></ItemList>
 			</div>
 		</>

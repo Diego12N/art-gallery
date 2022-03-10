@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;500;600&family=Urbanist&display=swap");
+
+.detail {
+	width: 60%;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.detail-loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50vh;
+}
+
+.detail__container {
+	display: flex;
+}
+
+.detail-img__container {
+	width: 50%;
+}
+
+.detail-img {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.detail-measures__container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}
+
+.detail-measures {
+	outline: 1px solid #3737378f;
+	width: max-content;
+	padding: 5px 15px;
+}
+
+.detail__description {
+	padding-left: 50px;
+	text-align: left;
+}
+
+.detail-title__container {
+	padding: 30px 0 15px 0;
+	font-size: 25px;
+}
+
+.detail-type {
+	font-size: 18px;
+}
+
+.detail-year {
+	font-size: 16px;
+}
+
+.detail-item__description {
+	margin-bottom: 30px;
+}
+
+.detail-price__container {
+	font-family: "Barlow Semi Condensed", sans-serif;
+	padding-bottom: 15px;
+}
+
+.detail-price__subtitle {
+	font-size: 14px;
+	color: green;
+}
+
+.detail-price {
+	font-size: 35px;
+	padding-bottom: 5px;
+	color: green;
+}
+
+.noStock {
+	color: #fa1303;
+	font-family: "Barlow Semi Condensed", sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/* Item Count */
+
+.detail-count__container {
+	display: flex;
+	width: max-content;
+	outline: 2px solid #fa1303;
+	border-radius: 20px;
+	margin: 0 auto 30px 0;
+}
+
+.detail-count__container .btn-subtract,
+.btn-add,
+.detail-quantity {
+	width: 45px;
+	height: 35px;
+	text-align: center;
+	font-family: "Urbanist", sans-serif;
+}
+
+.btn-subtract,
+.btn-add {
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.detail-quantity {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	font-size: 20px;
+	font-weight: bold;
+	outline: 2px solid #fa1303;
+}
+
+.btn-add__cart,
+.btn-toCart {
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: "Urbanist", sans-serif;
+	background-color: #fa1303;
+	width: 100%;
+	padding: 10px 0;
+	letter-spacing: 1px;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-add__cart:hover,
+.btn-toCart:hover {
+	background-color: #e00f00;
+	box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-add__cart:active,
+.btn-toCart:active {
+	transform: scale(98%);
+}
+
+.btn-toCart__link {
+	text-decoration: none;
+}
+
+.btn-toCart {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
+.fas-btn {
+	padding-right: 5px;
+	font-size: 14px;
+}

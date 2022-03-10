@@ -17,6 +17,7 @@ const ItemList = (props) => {
 									img={elem.img}
 									title={elem.title}
 									price={elem.price}
+									stock={elem.stock}
 								></Item>
 							</>
 						);

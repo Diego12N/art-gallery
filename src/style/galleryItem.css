@@ -3,6 +3,7 @@
 .item-container {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	width: 60%;
 	gap: 30px;
 }
@@ -52,6 +53,23 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+.item-stock {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	background-color: #fa1303;
+	box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
 }
 
 .item-img::selection {

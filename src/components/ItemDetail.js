@@ -1,4 +1,5 @@
 import {useContext, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
 import ItemCount from "./ItemCount";
 import "../style/itemDetail.css";
@@ -9,10 +10,22 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const ItemDetail = (props) => {
 	const [qty, setQty] = useState(0);
 	const test = useContext(CartContext);
+	const [idParams, setIdParams] = useState("");
+
+	const {id} = useParams();
 
 	useEffect(() => {
-		if (props.product && qty > 0) test.addItem(props.product, qty);
+		if (props.product && qty > 0) {
+			test.addItem(props.product, qty);
+		}
 	}, [qty]);
+
+	useEffect(() => {
+		setIdParams(id);
+		if (id != idParams) {
+			setQty(0);
+		}
+	}, [id]);
 
 	const onAdd = (unit) => {
 		let quantityToAdd = 0;
@@ -59,7 +72,7 @@ const ItemDetail = (props) => {
 						(qty === 0 ? (
 							<ItemCount
 								stock={props.product.stock}
-								initial="0"
+								initial={0}
 								onAdd={onAdd}
 							/>
 						) : (

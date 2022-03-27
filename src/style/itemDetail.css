@@ -18,7 +18,7 @@
 }
 
 .detail-img__container {
-	width: 50%;
+	width: 40%;
 }
 
 .detail-img {
@@ -162,4 +162,24 @@
 .fas-btn {
 	padding-right: 5px;
 	font-size: 14px;
+}
+
+.item-related__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+	margin-bottom: 150px;
+}
+
+.item-related__title {
+	width: 60%;
+	margin: 40px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #373737;
+}
+
+.item-related__title h1 {
+	font-size: 25px;
 }

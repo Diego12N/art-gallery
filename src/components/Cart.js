@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useState, useEffect} from "react";
 import {CartContext} from "./CartContext";
 import CartItem from "./CartItem";
 import "../style/cartContainer.css";
@@ -15,6 +15,7 @@ import db from "../utils/firebaseConfig";
 
 const Cart = () => {
 	const test = useContext(CartContext);
+	const [discount, setDiscount] = useState(false);
 
 	let itemDetail = test.cartList.map((item) => {
 		return {
@@ -25,18 +26,6 @@ const Cart = () => {
 		};
 	});
 
-	const returnTotalToPay = () => {
-		let itemsPrice = itemDetail.map((item) => {
-			return item.price;
-		});
-
-		let total = itemsPrice.reduce((previousValue, currentValue) => {
-			return previousValue + currentValue;
-		});
-
-		return total;
-	};
-
 	const createOrder = () => {
 		let order = {
 			date: serverTimestamp(),
@@ -46,10 +35,9 @@ const Cart = () => {
 				phone: "3514236583",
 			},
 			items: itemDetail,
-			total: test.calcTotal(),
+			discount: discount,
+			total: test.calcTotal(discount),
 		};
-
-		console.log(order);
 
 		const createOrderInFirestore = async () => {
 			const newOrderRef = doc(collection(db, "orders"));
@@ -61,7 +49,6 @@ const Cart = () => {
 			.then((result) => {
 				alert("El numero de orden es: " + result.id);
 				test.cartList.map(async (item) => {
-					console.log("Cantidad", item.qty);
 					const itemRef = doc(db, "products", item.id);
 					await updateDoc(itemRef, {
 						stock: increment(-item.qty),
@@ -74,14 +61,16 @@ const Cart = () => {
 
 	const RemoveCartList = () => {
 		return (
-			<button
-				className="cart-btn__delete"
-				onClick={() => {
-					test.clear();
-				}}
-			>
-				Borrar Todos
-			</button>
+			<div className="btn-delete__container">
+				<button
+					className="cart-btn__delete"
+					onClick={() => {
+						test.clear();
+					}}
+				>
+					Borrar Todos
+				</button>
+			</div>
 		);
 	};
 
@@ -95,32 +84,94 @@ const Cart = () => {
 
 	return (
 		<>
-			<h1>Carrito</h1>
-			<div className="cart-container">
-				{test.cartList.length > 0 ? (
-					<>
-						<div className="cart-container__item">
-							{test.cartList.map((elem) => {
-								return <CartItem key={elem.id} item={elem}></CartItem>;
-							})}
-							<RemoveCartList></RemoveCartList>
-						</div>
-						<div className="cart-total">
-							<p>Confirmacion de Pago</p>
-							<p>Sub Total: {test.calcSubTotal()}</p>
-							<p>Descuento:</p>
-							<b>Total a Pagar {test.calcTotal()}</b>
-							<button onClick={createOrder}> Confirmacion de Pago</button>
-						</div>
-					</>
-				) : (
-					<>
-						<h1 className="cart-empty__title">
-							No hay productos en el carrito
-						</h1>
-						<BackToLandign></BackToLandign>
-					</>
-				)}
+			<div className="cart">
+				<div className="cart-container">
+					{test.cartList.length > 0 && (
+						<>
+							<div className="cart-body">
+								<div className="cart-title__body">
+									<div className="cart-title">
+										<h1 className="title">Articulo</h1>
+										<div className="cart-subtitles">
+											<p>Cantidad</p>
+											<p>Subtotal</p>
+											<p></p>
+										</div>
+									</div>
+								</div>
+								<div className="cart-item__container">
+									{test.cartList.map((elem) => {
+										return <CartItem key={elem.id} item={elem}></CartItem>;
+									})}
+								</div>
+								<RemoveCartList></RemoveCartList>
+							</div>
+						</>
+					)}
+					{test.cartList.length > 0 ? (
+						<>
+							<div className="cart-total">
+								<div className="cart-total__container">
+									<div className="cart-total-title">
+										<p className="total-title">Detalle de Compra</p>
+									</div>
+									<div className="buy-detail">
+										<div className="buy-section__detail">
+											<b>SUBTOTAL</b>
+											<p>${test.calcSubTotal()}</p>
+										</div>
+										<div className="buy-section__detail">
+											<b>DESCUENTO</b>
+											<p>${test.showDiscount(discount)}</p>
+										</div>
+										<div className="buy-section__detail">
+											<b>TOTAL</b>
+											<p>${test.calcTotal(discount)}</p>
+										</div>
+									</div>
+									<div className="buy-section__detail">
+										<form id="form-discount">
+											<div className="form-discount__container">
+												<label>
+													Pago transferencia bancaria{" "}
+													<b>{"(Descuento del 15%)"}</b>
+													<input
+														type="checkbox"
+														name="discount"
+														id="discount"
+														onChange={(e) => {
+															if (e.target.checked) {
+																return setDiscount(true);
+															} else setDiscount(false);
+														}}
+													/>
+												</label>
+											</div>
+										</form>
+									</div>
+									<div className="buy-section__detail section-button">
+										<button
+											className="buy-button"
+											onClick={() => {
+												createOrder();
+											}}
+										>
+											{" "}
+											Confirmacion de Pago
+										</button>
+									</div>
+								</div>
+							</div>
+						</>
+					) : (
+						<>
+							<h1 className="cart-empty__title">
+								No hay productos en el carrito
+							</h1>
+							<BackToLandign></BackToLandign>
+						</>
+					)}
+				</div>
 			</div>
 		</>
 	);

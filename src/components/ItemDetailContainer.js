@@ -4,13 +4,16 @@ import ItemDetail from "./ItemDetail";
 import {doc, getDoc} from "firebase/firestore";
 import db from "../utils/firebaseConfig";
 import "../style/itemDetail.css";
+import {fireStoreFetch} from "../utils/fireStoreFetch";
+import ItemList from "./ItemList";
 
 const ItemDetailContainer = () => {
 	const [item, setItem] = useState([]);
+	const [ItemsRelated, setItemsRelated] = useState([]);
 
 	const {id} = useParams();
 
-	const fireStoreFetch = async (id) => {
+	const fireStoreFetchOneItem = async (id) => {
 		const docRef = doc(db, "products", id);
 		const docSnap = await getDoc(docRef);
 
@@ -25,9 +28,17 @@ const ItemDetailContainer = () => {
 	};
 
 	useEffect(() => {
-		fireStoreFetch(id)
+		fireStoreFetchOneItem(id)
 			.then((result) => {
 				setItem(result);
+				fireStoreFetch(result.categoryID)
+					.then((elem) => {
+						let objectRelated = elem.filter((obj) => {
+							return obj.id != result.id && obj.stock > 0;
+						});
+						setItemsRelated(objectRelated);
+					})
+					.catch((err) => console.log(err));
 			})
 			.catch((err) => console.log(err));
 	}, [id]);
@@ -47,8 +58,16 @@ const ItemDetailContainer = () => {
 			) : (
 				<>
 					<div className="detail">
-						<ItemDetail product={item}></ItemDetail>
+						<ItemDetail product={item} newClass="item-related"></ItemDetail>
 					</div>
+					{ItemsRelated.length > 0 && (
+						<div className="item-related__container">
+							<div className="item-related__title">
+								<h1>RECOMENDADOS</h1>
+							</div>
+							<ItemList products={ItemsRelated}></ItemList>
+						</div>
+					)}
 				</>
 			)}
 		</>

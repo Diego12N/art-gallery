@@ -5,22 +5,16 @@ import {CartContext} from "./CartContext";
 const CartWidget = () => {
 	const test = useContext(CartContext);
 
-	const CartQty = () => {
-		return (
-			<>
-				{test.calcItemsQty() > 0 && (
-					<div className="navbar-cart__amount">
-						<p>{test.calcItemsQty()}</p>
-					</div>
-				)}
-			</>
-		);
-	};
+	let cartItemQuantitie = test.calcItemsQty();
 
 	return (
 		<div className="navbar-cart">
 			<i className="fas fa-shopping-cart"></i>
-			<CartQty></CartQty>
+			{cartItemQuantitie > 0 && (
+				<div className="navbar-cart__amount">
+					<p>{cartItemQuantitie}</p>
+				</div>
+			)}
 		</div>
 	);
 };

@@ -1,39 +1,38 @@
 import {createContext, useState} from "react";
-import {collection, getDocs} from "firebase/firestore";
-import db from "../utils/firebaseConfig";
 
 export const CartContext = createContext();
 
 const CartContextProvider = ({children}) => {
 	const [cartList, setCartList] = useState([]);
 
-	const getFirebaseProducts = async () => {
-		const querySnapshot = await getDocs(collection(db, "products"));
-		const dataFromFirestore = querySnapshot.docs.map((document) => ({
-			id: document.id,
-			...document.data(),
-		}));
-
-		return dataFromFirestore;
-	};
-
 	const calcSubTotal = () => {
-		let subTotal = cartList.map((item) => item.price);
+		let subTotal = cartList.map((item) => item.total);
 		return subTotal.reduce(
 			(previousValue, currentValue) => previousValue + currentValue
 		);
 	};
 
-	const calcTotal = () => {
-		return calcSubTotal();
+	const showDiscount = (discount) => {
+		let subTotal = calcSubTotal();
+		let totalDiscount = subTotal * (15 / 100);
+
+		if (discount) {
+			return totalDiscount;
+		} else {
+			return "0.00";
+		}
 	};
 
-	const calcItemsQty = () => {
-		let quantities = cartList.map((item) => item.qty);
-		return quantities.reduce(
-			(previousValue, currentValue) => previousValue + currentValue,
-			0
-		);
+	const calcTotal = (discount) => {
+		let subTotal = calcSubTotal();
+		let totalDiscount = subTotal * (15 / 100);
+		let totalWithdiscount = subTotal - totalDiscount;
+
+		if (discount) {
+			return totalWithdiscount;
+		} else {
+			return subTotal;
+		}
 	};
 
 	const isInCart = (item, qty, price) => {
@@ -42,13 +41,27 @@ const CartContextProvider = ({children}) => {
 		});
 
 		if (cartList.length > 0 && elementIndex != -1) {
-			cartList[elementIndex].qty += qty;
-			cartList[elementIndex].price += price;
-		} else return;
+			const copyCartList = [...cartList];
+
+			copyCartList[elementIndex].qty += qty;
+			copyCartList[elementIndex].total += price;
+
+			setCartList([...copyCartList]);
+		}
+	};
+
+	const calcItemsQty = () => {
+		let arrayQuantities = cartList.map((item) => item.qty);
+		let quantitie = arrayQuantities.reduce(
+			(previousValue, currentValue) => previousValue + currentValue,
+			0
+		);
+
+		return quantitie;
 	};
 
 	const addItem = (item, unit) => {
-		let total = item.price * unit;
+		let total = item.total * unit;
 		let objExist = cartList.some((obj) => obj.id === item.id);
 
 		if (objExist) {
@@ -61,7 +74,9 @@ const CartContextProvider = ({children}) => {
 					stock: item.stock,
 					img: item.img,
 					name: item.title,
-					price: total,
+					measures: item.measures,
+					price: item.price,
+					total: total,
 					qty: unit,
 				},
 			]);
@@ -90,7 +105,7 @@ const CartContextProvider = ({children}) => {
 				calcItemsQty,
 				calcSubTotal,
 				calcTotal,
-				getFirebaseProducts,
+				showDiscount,
 			}}
 		>
 			{children}

@@ -9,7 +9,7 @@ const NavBar = () => {
 				<div className="navbar-container">
 					<Link to="/" className="navbar-logotipe">
 						<img
-							src="images/Mar-logotipe.jpg"
+							src="https://i.ibb.co/LpC9C1t/Mar-logotipe.jpg"
 							className="navbar-logotipe__img"
 						></img>
 					</Link>
@@ -25,7 +25,7 @@ const NavBar = () => {
 							</Link>
 						</li>
 						<li className="navbar_item">
-							<Link to="" className="navbar_link">
+							<Link to="/contact" className="navbar_link">
 								Contacto
 							</Link>
 						</li>
@@ -35,7 +35,6 @@ const NavBar = () => {
 					</Link>
 				</div>
 			</div>
-			{/* <div className="header-margin__bottom"></div> */}
 			<div className="navbar-sections__container">
 				<ul className="navbar-sections">
 					<li className="section">

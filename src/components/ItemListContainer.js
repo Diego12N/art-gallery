@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {CartContext} from "./CartContext";
 import ItemList from "./ItemList";
 import "../style/itemListContainer.css";
+import {fireStoreFetch} from "../utils/fireStoreFetch";
 
 const ItemListContainer = () => {
 	const test = useContext(CartContext);
@@ -11,21 +12,12 @@ const ItemListContainer = () => {
 	// const categoryId = useParams(); Esta variable devuelve un objeto, pero necesitamos su valor/key
 	const {categoryId} = useParams(); // Mediante los signos {} destructuramos la variable para recibir solo su valor
 
-	const fireStoreFetch = () => {
-		let productsPromise = test.getFirebaseProducts();
-		return productsPromise;
-	};
-
 	useEffect(() => {
-		fireStoreFetch()
+		fireStoreFetch(categoryId)
 			.then((result) => {
-				if (categoryId != undefined) {
-					setItems(
-						result.filter((obj) => obj.categoryID === parseInt(categoryId))
-					);
-				} else setItems(result);
+				setItems(result);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log("Error", err));
 	}, [categoryId]);
 
 	return (

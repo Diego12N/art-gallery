@@ -6,3 +6,13 @@
 	flex-wrap: wrap;
 	gap: 50px;
 }
+
+.items-error {
+	height: 470px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.icon-error {
+	color: #fa1303;
+}

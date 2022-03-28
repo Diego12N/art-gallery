@@ -1,10 +1,9 @@
 import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import {doc, getDoc} from "firebase/firestore";
-import db from "../utils/firebaseConfig";
 import "../style/itemDetail.css";
 import {fireStoreFetch} from "../utils/fireStoreFetch";
+import {fireStoreFetchOneItem} from "../utils/fireStoreFetchOneItem.js";
 import ItemList from "./ItemList";
 
 const ItemDetailContainer = () => {
@@ -12,20 +11,6 @@ const ItemDetailContainer = () => {
 	const [ItemsRelated, setItemsRelated] = useState([]);
 
 	const {id} = useParams();
-
-	const fireStoreFetchOneItem = async (id) => {
-		const docRef = doc(db, "products", id);
-		const docSnap = await getDoc(docRef);
-
-		if (docSnap.exists()) {
-			return {
-				id: id,
-				...docSnap.data(),
-			};
-		} else {
-			console.log("No such document!");
-		}
-	};
 
 	useEffect(() => {
 		fireStoreFetchOneItem(id)
@@ -38,9 +23,9 @@ const ItemDetailContainer = () => {
 						});
 						setItemsRelated(objectRelated);
 					})
-					.catch((err) => console.log(err));
+					.catch(() => setItemsRelated([]));
 			})
-			.catch((err) => console.log(err));
+			.catch(() => setItem([]));
 	}, [id]);
 
 	return (

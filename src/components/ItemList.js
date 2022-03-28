@@ -1,5 +1,4 @@
 import Item from "./Item";
-/* import "../style/gallery.css"; */
 import "../style/galleryItem.css";
 import "../style/loader.css";
 

@@ -1,62 +1,24 @@
-import {useContext, useState, useEffect} from "react";
+import {useContext, useState} from "react";
 import {CartContext} from "./CartContext";
 import CartItem from "./CartItem";
 import "../style/cartContainer.css";
-import {Link} from "react-router-dom";
-import {
-	collection,
-	serverTimestamp,
-	setDoc,
-	doc,
-	updateDoc,
-	increment,
-} from "firebase/firestore";
-import db from "../utils/firebaseConfig";
+import {createOrder} from "../utils/createOrder";
+import {ModalConfirm} from "./ModalConfirm";
+import CartEmpty from "./CartEmpty";
 
 const Cart = () => {
 	const test = useContext(CartContext);
+	const [compra, setCompra] = useState({});
+	const [showModal, setShowModal] = useState(false);
 	const [discount, setDiscount] = useState(false);
 
-	let itemDetail = test.cartList.map((item) => {
-		return {
-			id: item.id,
-			title: item.name,
-			qty: item.qty,
-			price: item.price,
-		};
-	});
+	const payConfirm = async (hasDiscount, context) => {
+		const newOrder = await createOrder(hasDiscount, context);
 
-	const createOrder = () => {
-		let order = {
-			date: serverTimestamp(),
-			comprador: {
-				email: "diego.naranjo@gmail.com",
-				name: "Diego Naranjo",
-				phone: "3514236583",
-			},
-			items: itemDetail,
-			discount: discount,
-			total: test.calcTotal(discount),
-		};
-
-		const createOrderInFirestore = async () => {
-			const newOrderRef = doc(collection(db, "orders"));
-			await setDoc(newOrderRef, order);
-			return newOrderRef;
-		};
-
-		createOrderInFirestore()
-			.then((result) => {
-				alert("El numero de orden es: " + result.id);
-				test.cartList.map(async (item) => {
-					const itemRef = doc(db, "products", item.id);
-					await updateDoc(itemRef, {
-						stock: increment(-item.qty),
-					});
-				});
-				test.clear();
-			})
-			.catch((err) => console.log("Error: ", err));
+		if (newOrder && newOrder.id) {
+			setCompra(newOrder);
+			setShowModal(true);
+		}
 	};
 
 	const RemoveCartList = () => {
@@ -71,14 +33,6 @@ const Cart = () => {
 					Borrar Todos
 				</button>
 			</div>
-		);
-	};
-
-	const BackToLandign = () => {
-		return (
-			<Link to="/">
-				<button>Volver al Inicio</button>
-			</Link>
 		);
 	};
 
@@ -153,7 +107,7 @@ const Cart = () => {
 										<button
 											className="buy-button"
 											onClick={() => {
-												createOrder();
+												payConfirm(discount, test);
 											}}
 										>
 											{" "}
@@ -164,15 +118,13 @@ const Cart = () => {
 							</div>
 						</>
 					) : (
-						<>
-							<h1 className="cart-empty__title">
-								No hay productos en el carrito
-							</h1>
-							<BackToLandign></BackToLandign>
-						</>
+						<CartEmpty></CartEmpty>
 					)}
 				</div>
 			</div>
+			{showModal && (
+				<ModalConfirm orderDetails={compra} show={showModal}></ModalConfirm>
+			)}
 		</>
 	);
 };

@@ -1,0 +1,41 @@
+.cart-form {
+	width: 100%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+}
+
+.cart-form__container {
+	margin: auto;
+	padding-top: 20px;
+	width: 60%;
+}
+
+.cart-form__section {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+.cart-form__label {
+	font-size: 14px;
+	padding-bottom: 5px;
+	color: #000;
+}
+
+.required {
+	color: #fa1303;
+	font-weight: bold;
+}
+
+.cart-form__input {
+	padding: 5px 10px;
+	background-color: #696969;
+	border: none;
+	border-radius: 3px;
+}
+
+.cart-form__input {
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+}

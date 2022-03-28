@@ -1,24 +1,22 @@
-import ItemCount from "./ItemCount";
-import ItemDetailContainer from "./ItemDetailContainer";
-import "../style/item.css";
+import {Link} from "react-router-dom";
+import "../style/galleryItem.css";
 
 const Item = (props) => {
-	const onAdd = (unit) =>
-		alert("Se han agregado " + unit + " unidades al carrito");
-
 	return (
 		<>
-			<div>
-				<img src={props.img} className="gallery-img"></img>
-				<div className="gallery-title">
-					<h3 className="gallery-title__item">{props.title}</h3>
+			<div className="item">
+				<img src={props.img} className="item-img"></img>
+				{props.stock === 0 && (
+					<div className="item-stock">
+						<p>SIN STOCK</p>
+					</div>
+				)}
+				<div className="item-description">
+					<h3 className="item-title">{props.title}</h3>
+					<Link to={`/item/${props.id}`} className="item-btn">
+						Ver Detalle
+					</Link>
 				</div>
-				<div className="gallery-item__description">
-					<p className="gallery-description">{props.description}</p>
-					<p className="gallery-year">Año: {props.year}</p>
-					<p className="gallery-price">Precio: ${props.price}</p>
-				</div>
-				<ItemCount stock="5" initial="1" onAdd={onAdd} />
 			</div>
 		</>
 	);

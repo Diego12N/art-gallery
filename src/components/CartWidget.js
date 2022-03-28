@@ -1,13 +1,21 @@
-const cartAmount = 4;
+import {useContext} from "react";
+import "../style/header.css";
+import {CartContext} from "./CartContext";
 
-const CartWidget = (props) => {
+const CartWidget = () => {
+	const test = useContext(CartContext);
+
+	let cartItemQuantitie = test.calcItemsQty();
+
 	return (
-		<a href="" className="navbar-cart">
+		<div className="navbar-cart">
 			<i className="fas fa-shopping-cart"></i>
-			<div className="navbar-cart__amount">
-				<p>{props.valor}</p>
-			</div>
-		</a>
+			{cartItemQuantitie > 0 && (
+				<div className="navbar-cart__amount">
+					<p>{cartItemQuantitie}</p>
+				</div>
+			)}
+		</div>
 	);
 };
 

@@ -1,0 +1,130 @@
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 100;
+	animation: opacityModal 0.3s;
+}
+
+@keyframes opacityModal {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.modal__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 25%;
+	height: 380px;
+	padding: 0 30px;
+	background-color: #fff;
+	opacity: 100%;
+	box-shadow: 0px 0px 50px 10px rgb(29, 29, 29);
+	border-radius: 10px;
+	box-sizing: border-box;
+	position: relative;
+	animation: openModal 0.6s;
+}
+
+@keyframes openModal {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+.modal-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-color: green;
+	position: absolute;
+	top: -35px;
+}
+
+.modal-icon-check {
+	font-size: 35px;
+	color: #fff;
+}
+
+.modal-details {
+	width: 80%;
+	margin-bottom: 20px;
+}
+
+.modal-section {
+	margin-bottom: 20px;
+}
+
+.modal-order {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
+.order-number {
+	outline: 1px solid #3737378f;
+	width: max-content;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+
+.form-button-close {
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: "Urbanist", sans-serif;
+	background-color: #e98f0d;
+	width: 80%;
+	padding: 10px 0;
+	cursor: pointer;
+	letter-spacing: 1px;
+	border: none;
+	margin-top: 10px;
+	transition: all 0.2s ease;
+}
+
+.form-button-close:hover {
+	box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-button-close:active {
+	transform: scale(98%);
+}
+
+@media screen and (max-width: 480px) {
+	.modal__container {
+		width: 80%;
+	}
+
+	.modal-order {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+	}
+}

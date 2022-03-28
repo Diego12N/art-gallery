@@ -1,37 +1,37 @@
-import {useEffect, useState} from "react";
-import "../style/ItemCount.css";
+import {useState} from "react";
+import "../style/itemDetail.css";
 
 const ItemCount = ({stock, initial, onAdd}) => {
-	let [item, setItem] = useState(parseInt(initial));
+	let [quantity, setQuantity] = useState(parseInt(initial));
 	let [buttonActive, setButton] = useState(true);
 
 	const agregar = () => {
-		onAdd(item);
+		onAdd(quantity);
 	};
 
 	const increment = () => {
-		if (item < stock) {
-			setItem((item += 1));
+		if (quantity < stock) {
+			setQuantity((quantity += 1));
 		} else {
 			setButton(false);
 		}
 	};
 
 	const decrement = () => {
-		if (item > initial && item <= stock) {
-			setItem((item -= 1));
+		if (quantity > initial && quantity <= stock) {
+			setQuantity((quantity -= 1));
 			setButton(true);
 		}
 	};
 
 	return (
 		<>
-			<div className="item-count">
-				<div className="item-container">
+			<div className="detail-count">
+				<div className="detail-count__container">
 					<button className="btn-subtract" onClick={decrement}>
 						-
 					</button>
-					<p>{item}</p>
+					<p className="detail-quantity">{quantity}</p>
 					<button
 						id="btn"
 						className="btn-add"
@@ -43,6 +43,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
 				</div>
 
 				<button className="btn-add__cart" onClick={() => agregar()}>
+					<i className="fas fa-shopping-cart fas-btn"></i>
 					Agregar
 				</button>
 			</div>

@@ -22,3 +22,8 @@ que es vender las obras al público destinatario.
   - "free-brands-svg-icons": "^6.1.0",
   - "free-regular-svg-icons": "^6.1.0",
   - "free-solid-svg-icons": "^6.1.0",
+
+## License
+```diff
+By Diego Emmanuel Naranjo. @@ Frontend Developer.(and bold)@@
+```

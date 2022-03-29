@@ -25,5 +25,5 @@ que es vender las obras al público destinatario.
 
 ## License
 ```diff
-By Diego Emmanuel Naranjo. @@ Frontend Developer.(and bold)@@
+By Diego Emmanuel Naranjo. @@ Frontend Developer.@@
 ```

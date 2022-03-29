@@ -1,7 +1,7 @@
 {
 	"name": "art-gallery",
 	"version": "0.1.0",
-	"homepage": "https://diego12n.github.io/art-gallery/",
+	"homepage": "http://diego12n.github.io/art-gallery",
 	"private": true,
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.3.0-beta3",

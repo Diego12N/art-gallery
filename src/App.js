@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
 import CartContextProvider from "./components/CartContext";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
@@ -11,7 +11,7 @@ import {ContactPage} from "./components/ContactPage";
 function App() {
 	return (
 		<CartContextProvider>
-			<BrowserRouter>
+			<HashRouter>
 				<NavBar />
 				<Routes>
 					<Route path="/" element={<ItemListContainer />} />
@@ -24,7 +24,7 @@ function App() {
 					<Route path="/contact" element={<ContactPage></ContactPage>}></Route>
 				</Routes>
 				<Footer></Footer>
-			</BrowserRouter>
+			</HashRouter>
 		</CartContextProvider>
 	);
 }

@@ -10,6 +10,7 @@ sino también a su vez tiene un diseño moderno y elegante pero sin perder la fu
 que es vender las obras al público destinatario.
 
 ## Demo
+![2022-03-28 19-09-45.gif](https://github.com/Diego12N/art-gallery/blob/master/public/images/2022-03-28%2019-09-45.gif)
 
 ## Features
 
@@ -21,3 +22,8 @@ que es vender las obras al público destinatario.
   - "free-brands-svg-icons": "^6.1.0",
   - "free-regular-svg-icons": "^6.1.0",
   - "free-solid-svg-icons": "^6.1.0",
+
+## License
+```diff
+By Diego Emmanuel Naranjo. Frontend Developer.
+```

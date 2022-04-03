@@ -1,6 +1,12 @@
+import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {useContext} from "react";
 import "../style/header.css";
 import {CartContext} from "./CartContext";
+import {
+	CartContainer,
+	CartCount,
+	CartIcon,
+} from "./styleComponents/NavbarStyles";
 
 const CartWidget = () => {
 	const test = useContext(CartContext);
@@ -8,14 +14,14 @@ const CartWidget = () => {
 	let cartItemQuantitie = test.calcItemsQty();
 
 	return (
-		<div className="navbar-cart">
-			<i className="fas fa-shopping-cart"></i>
+		<CartContainer>
+			<CartIcon icon={faShoppingCart} />
 			{cartItemQuantitie > 0 && (
-				<div className="navbar-cart__amount">
+				<CartCount>
 					<p>{cartItemQuantitie}</p>
-				</div>
+				</CartCount>
 			)}
-		</div>
+		</CartContainer>
 	);
 };
 

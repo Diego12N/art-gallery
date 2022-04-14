@@ -8,7 +8,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 
 const ItemListContainer = () => {
-	const test = useContext(CartContext);
 	const [items, setItems] = useState([]);
 
 	// const categoryId = useParams(); Esta variable devuelve un objeto, pero necesitamos su valor/key

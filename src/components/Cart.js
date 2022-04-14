@@ -5,6 +5,7 @@ import "../style/cartContainer.css";
 import {createOrder} from "../utils/createOrder";
 import {ModalConfirm} from "./ModalConfirm";
 import CartEmpty from "./CartEmpty";
+import {useEffect} from "react";
 
 const Cart = () => {
 	const test = useContext(CartContext);
@@ -45,12 +46,18 @@ const Cart = () => {
 							<div className="cart-body">
 								<div className="cart-title__body">
 									<div className="cart-title">
-										<h1 className="title">Articulo</h1>
-										<div className="cart-subtitles">
-											<p>Cantidad</p>
-											<p>Subtotal</p>
-											<p></p>
-										</div>
+										{window.innerWidth > 768 ? (
+											<>
+												<h1 className="title">Articulo</h1>
+												<div className="cart-subtitles">
+													<p>Cantidad</p>
+													<p>Subtotal</p>
+													<p></p>
+												</div>
+											</>
+										) : (
+											<h1 className="title">Articulo</h1>
+										)}
 									</div>
 								</div>
 								<div className="cart-item__container">
@@ -72,15 +79,15 @@ const Cart = () => {
 									<div className="buy-detail">
 										<div className="buy-section__detail">
 											<b>SUBTOTAL</b>
-											<p>${test.calcSubTotal()}</p>
+											<p className="bold">${test.calcSubTotal()}</p>
 										</div>
 										<div className="buy-section__detail">
 											<b>DESCUENTO</b>
-											<p>${test.showDiscount(discount)}</p>
+											<p className="bold">${test.showDiscount(discount)}</p>
 										</div>
 										<div className="buy-section__detail">
 											<b>TOTAL</b>
-											<p>${test.calcTotal(discount)}</p>
+											<p className="bold">${test.calcTotal(discount)}</p>
 										</div>
 									</div>
 									<div className="buy-section__detail">

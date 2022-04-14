@@ -30,10 +30,10 @@ export const NavbarContainer = styled.div`
 	width: 60%;
 	height: 95px;
 	margin: auto;
+	z-index: 60;
 
 	@media screen and (max-width: 480px) {
 		width: 80%;
-		height: max-content;
 	}
 `;
 
@@ -59,13 +59,15 @@ export const ImgLogotipe = styled.img`
 
 export const IconBars = styled(FontAwesomeIcon)`
 	display: none;
-	font-size: 25px;
-	color: #fff;
-	background-color: #373737;
-	z-index: 45;
 
-	@media screen and (max-width: 480px) {
-		display: block;
+	@media screen and (max-width: 768px) {
+		display: flex;
+		justify-content: flex-start;
+		font-size: 25px;
+		width: 65px;
+		color: #fff;
+		background-color: #373737;
+		z-index: 55;
 	}
 `;
 
@@ -73,21 +75,31 @@ export const NavbarList = styled.ul`
 	display: flex;
 	list-style: none;
 	height: 25%;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.4s ease-in-out;
 	z-index: 30;
 
-	@media screen and (max-width: 480px) {
+	@media screen and (max-width: 768px) {
 		flex-direction: column;
 		align-items: center;
 		position: absolute;
 		top: 95px;
 		left: 0;
 		width: 100%;
-		height: ${({open}) => (open ? "155px" : "0px")};
+		height: ${({open}) => (open ? "200px" : "0px")};
 		padding: ${({open}) => (open ? "10px 0" : "0")};
 		background-color: #373737;
 		color: #fff;
+		box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
 	}
+`;
+
+export const ModalBack = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 30;
 `;
 
 export const NavbarItem = styled.li`
@@ -100,7 +112,7 @@ export const NavbarItem = styled.li`
 	cursor: pointer;
 	background: transparent;
 	color: white;
-	transition: all 0.9s;
+	transition: all 0.3s;
 
 	@media screen and (min-width: 960px) {
 		position: relative;
@@ -113,8 +125,7 @@ export const NavbarItem = styled.li`
 			width: 3px;
 			height: 100%;
 			background-color: #fa1303;
-			z-index: -1;
-			transition: all 0.5s;
+			transition: all 0.3s;
 		}
 
 		&:hover::before {
@@ -122,7 +133,7 @@ export const NavbarItem = styled.li`
 		}
 	}
 
-	@media screen and (max-width: 480px) {
+	@media screen and (max-width: 768px) {
 		opacity: ${({open}) => (open ? "1" : "0")};
 		margin-bottom: 30px;
 	}
@@ -160,4 +171,53 @@ export const CartCount = styled.div`
 	width: 15px;
 	height: 15px;
 	z-index: 45;
+`;
+
+export const NavbarAboutContainer = styled.div`
+	background: #fff;
+	width: 100%;
+	border-top: 2px double #373737;
+	border-bottom: 2px double #373737;
+	font-family: "Manrope", sans-serif;
+	font-weight: 700;
+	box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.25);
+`;
+export const NavbarAboutList = styled.ul`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	height: 95px;
+	margin: auto;
+	padding: 0.7rem 0;
+	padding-right: 15px;
+	justify-content: center;
+
+	@media screen and (max-width: 480px) {
+		height: 55px;
+		padding-right: 0;
+	}
+`;
+
+export const NavbarAboutItem = styled.li`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 15px;
+	width: 95px;
+	height: 100%;
+	cursor: pointer;
+	transition: all 0.5s;
+`;
+
+export const NavBarAboutLink = styled(Link)`
+	font-size: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #373737;
+	transition: color 0.4s;
+
+	&:hover {
+		color: #fa1303;
+	}
 `;

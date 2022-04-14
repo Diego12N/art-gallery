@@ -26,7 +26,6 @@ const CartItem = (props) => {
 							<div className="cart-img__container">
 								<img src={props.item.img} className="cart-item__img"></img>
 							</div>
-
 							<div className="cart-item__description">
 								<Link to={`/item/${props.item.id}`} className="item-name">
 									{props.item.name}
@@ -40,7 +39,7 @@ const CartItem = (props) => {
 						<div className="item-buy">
 							<div className="item-buy__detail">
 								<b className="item-buy__quantitie">{props.item.qty}</b>
-								<b className="item-buy__total">$ {props.item.total}</b>
+								<b className="item-buy__total bold">$ {props.item.total}</b>
 								<button
 									onClick={() => {
 										setHideItem(false);

@@ -51,17 +51,29 @@ const NavBar = () => {
 						</NavbarLogotipe>
 						<NavbarList open={showMenu}>
 							<NavbarItem open={showMenu}>
-								<NavbarItemLink to="/" onClick={() => setMenu(false)}>
+								<NavbarItemLink
+									to="/"
+									open={showMenu}
+									onClick={() => setMenu(false)}
+								>
 									Home
 								</NavbarItemLink>
 							</NavbarItem>
 							<NavbarItem open={showMenu}>
-								<NavbarItemLink to="" onClick={() => setMenu(false)}>
+								<NavbarItemLink
+									to=""
+									open={showMenu}
+									onClick={() => setMenu(false)}
+								>
 									Biografia
 								</NavbarItemLink>
 							</NavbarItem>
 							<NavbarItem open={showMenu}>
-								<NavbarItemLink to="/contact" onClick={() => setMenu(false)}>
+								<NavbarItemLink
+									to="/contact"
+									open={showMenu}
+									onClick={() => setMenu(false)}
+								>
 									Contacto
 								</NavbarItemLink>
 							</NavbarItem>

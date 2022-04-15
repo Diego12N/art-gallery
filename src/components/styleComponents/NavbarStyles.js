@@ -144,6 +144,12 @@ export const NavbarItemLink = styled(Link)`
 	letter-spacing: 0.5px;
 	text-decoration: none;
 	color: #fff;
+	z-index: 50;
+
+	@media screen and (max-width: 480px) {
+		display: ${({open}) => (open ? "inline" : "none")};
+		opacity: ${({open}) => (open ? "1" : "0")};
+	}
 `;
 
 export const CartContainer = styled.div`

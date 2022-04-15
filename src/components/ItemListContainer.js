@@ -21,18 +21,36 @@ const ItemListContainer = () => {
 			.catch(() => setItems([]));
 	}, [categoryId]);
 
+	const renameSection = () => {
+		switch (categoryId) {
+			case "1":
+				return "SOBRE CARTON";
+			case "2":
+				return "SOBRE LIENZO";
+			case "3":
+				return "SOBRE DURLOK";
+			default:
+				return "DESTACADOS";
+		}
+	};
+
 	return (
 		<>
 			{items.length > 0 ? (
 				<div className="itemList-container">
-					<h1>DESTACADOS</h1>
+					<h1>{renameSection()}</h1>
 					<ItemList products={items}></ItemList>
 				</div>
 			) : (
-				<h1 className="items-error">
-					<FontAwesomeIcon icon={faCircleExclamation} className="icon-error" />{" "}
-					No hay productos disponibles
-				</h1>
+				<div className="detail detail-loading">
+					<div className="lds-ring">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<b>Cargando...</b>
+				</div>
 			)}
 		</>
 	);

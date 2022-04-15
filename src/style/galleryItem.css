@@ -149,4 +149,12 @@
 	.item:hover .item-description {
 		transform: none;
 	}
+
+	.item-stock {
+		border-radius: 0;
+		width: 100%;
+		height: 30px;
+		top: 0;
+		right: 0;
+	}
 }

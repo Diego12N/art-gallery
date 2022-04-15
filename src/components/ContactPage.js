@@ -2,6 +2,7 @@ import {faEdit, faUser} from "@fortawesome/free-regular-svg-icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../style/contactPage.css";
+import contactImage from "../images/contact-img.jpg";
 
 export const ContactPage = () => {
 	return (
@@ -49,10 +50,7 @@ export const ContactPage = () => {
 					</div>
 				</form>
 				<div className="form-image">
-					<img
-						src="https://i.ibb.co/2hmJTMP/header-margin2.jpg"
-						className="form-image__content"
-					></img>
+					<img src={contactImage} className="form-image__content"></img>
 				</div>
 			</div>
 		</>

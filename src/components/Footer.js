@@ -35,11 +35,11 @@ export const Footer = () => {
 								</div>
 							</div>
 							<div className="footer-list">
-								<p className="footer-summary">
+								{/* 								<p className="footer-summary">
 									Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 									Libero quos corrupti animi reprehenderit veniam nesciunt
 									quisquam recusandae cumque necessitatibus mollitia?
-								</p>
+								</p> */}
 							</div>
 						</li>
 						<li className="footer-list__container">

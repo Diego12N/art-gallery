@@ -14,17 +14,24 @@ import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import {useEffect} from "react";
 import {hideButtons, moveLeft, moveRight} from "../utils/itemListFunctions";
+import {useParams} from "react-router-dom";
 
 const ItemList = (props) => {
 	const [carouselPosition, setCarousel] = useState(0);
 	const [buttonLeft, setLeft] = useState(false);
 	const [buttonRight, setRight] = useState(false);
 
+	const {categoryId} = useParams();
+
 	let carouselPercentage = -100 * (props.products.length - 1);
 
 	useEffect(() => {
 		hideButtons(carouselPosition, carouselPercentage, setLeft, setRight);
 	});
+
+	useEffect(() => {
+		setCarousel(0);
+	}, [categoryId]);
 
 	return (
 		<>

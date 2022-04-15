@@ -49,6 +49,10 @@ export const ButtonLeft = styled.button`
 		z-index: 15;
 		transition: all 0.3s ease-out;
 		opacity: ${({leftState}) => (leftState ? "0" : "1")};
+
+		&:active {
+			border: none;
+		}
 	}
 `;
 
@@ -71,6 +75,10 @@ export const ButtonRight = styled.button`
 		right: 30px;
 		transition: all 0.3s ease-out;
 		opacity: ${({rightState}) => (rightState ? "0" : "1")};
+
+		&:active {
+			border: none;
+		}
 	}
 `;
 
